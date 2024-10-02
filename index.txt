@@ -1,0 +1,6 @@
+lorem ipsum dolor sit amet, consectetur adip e parturient
+
+WHAT IS NPM (node package manager)
+ =used to share useful packages in node like - tsc node, lodash
+what is the importance of a package-json file
+    = holds information about all packages needed to run that project
