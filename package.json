@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "nodemon /home/emmanuel/Desktop/Projects/Jitu-Pure-Node/Assignment_2(cart)/server.js",
     "build": "tsc -w",
     "dev": "ts-node-dev --respawn --transpile-only server.ts"
   },
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "express": "^4.21.0",
     "fs": "0.0.1-security",
