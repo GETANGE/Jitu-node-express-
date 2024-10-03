@@ -4,13 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-// Import JSON with assertion
-import data from '../Assignment_2(cart)/dev_data/data.json' assert { type: 'json' };
-
 const PORT = 4004;
 const HOST = '127.0.0.1';
-
-let fullProductData = [...data]
 
 // Serve static files from public directory
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +16,27 @@ const __dirname = dirname(__filename);
 // Defining the directory where the static files are located.
 const staticDirectory = path.join(__dirname, 'public');
 
-// Define MIME types for common file types
+const txtFilePath = path.join(__dirname, '../Assignment_2(cart)/dev_data/data.txt');
+
+// Read the text file asynchronously and then parse it
+fs.readFile(txtFilePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error('Error reading the text file:', err);
+        return;
+    }
+
+    // Assign and parse the JSON data after the file is read
+    let productData;
+    try {
+        productData = JSON.parse(data);
+    } catch (error) {
+        console.error('Error parsing JSON from the text file:', error);
+        return;
+    }
+
+    let fullProductData = [...productData];
+
+    // Define MIME types for common file types
 const mimeTypes = {
     '.html': 'text/html',
     '.css': 'text/css',
@@ -221,3 +236,4 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}`);
 });
+})
