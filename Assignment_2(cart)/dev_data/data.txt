@@ -39,7 +39,7 @@
     "id": 5,
     "imageUrl": "https://plus.unsplash.com/premium_photo-1661766479722-ddedc5dce339?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
     "title": "Holiday Market",
-    "price": 5,
+    "price": 50,
     "date": "December 3, 2021",
     "location": "Union Square, New York City",
     "company": "Holiday Markets Inc."
