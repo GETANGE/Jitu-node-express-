@@ -1,3 +1,89 @@
+// Show form functions
+document.getElementById('showAddFormBtn').addEventListener('click', () => {
+    document.getElementById('addProductForm').classList.remove('hidden');
+    document.getElementById('updateProductForm').classList.add('hidden');
+    document.getElementById('deleteProductForm').classList.add('hidden');
+});
+
+document.getElementById('showUpdateFormBtn').addEventListener('click', () => {
+    document.getElementById('updateProductForm').classList.remove('hidden');
+    document.getElementById('addProductForm').classList.add('hidden');
+    document.getElementById('deleteProductForm').classList.add('hidden');
+});
+
+document.getElementById('showDeleteFormBtn').addEventListener('click', () => {
+    document.getElementById('deleteProductForm').classList.remove('hidden');
+    document.getElementById('addProductForm').classList.add('hidden');
+    document.getElementById('updateProductForm').classList.add('hidden');
+});
+
+// Add Product Form Submission
+document.getElementById('addProductForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const newProduct = {
+        imageUrl: document.getElementById('productImageUrl').value,
+        title: document.getElementById('productTitle').value,
+        price: document.getElementById('productPrice').value,
+        date: document.getElementById('productDate').value,
+        location: document.getElementById('productLocation').value,
+        company: document.getElementById('productCompany').value
+    };
+
+    try {
+        await axios.post("http://127.0.0.1:4004/api/product", newProduct);
+        alert('New product added!');
+        displayContent();
+        document.getElementById('addProductForm').reset(); // Reset the form
+        document.getElementById('addProductForm').classList.add('hidden'); // Hide the form
+    } catch (error) {
+        console.error('Error adding product:', error.response.data);
+    }
+});
+
+// Update Product Form Submission
+document.getElementById('updateProductForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const productId = document.getElementById('productIdToUpdate').value;
+    const updatedProduct = {
+        imageUrl: document.getElementById('updateProductImageUrl').value,
+        title: document.getElementById('updateProductTitle').value,
+        price: document.getElementById('updateProductPrice').value,
+        date: document.getElementById('updateProductDate').value,
+        location: document.getElementById('updateProductLocation').value,
+        company: document.getElementById('updateProductCompany').value
+    };
+
+    try {
+        await axios.put(`http://127.0.0.1:4004/api/product/${productId}`, updatedProduct);
+        alert('Product updated!');
+        displayContent();
+        document.getElementById('updateProductForm').reset(); // Reset the form
+        document.getElementById('updateProductForm').classList.add('hidden'); // Hide the form
+    } catch (error) {
+        console.log(error);
+        console.error('Error updating product:', error.response.data);
+    }
+});
+
+// Delete Product Form Submission
+document.getElementById('deleteProductForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const productId = document.getElementById('productIdToDelete').value;
+
+    try {
+        await axios.delete(`http://127.0.0.1:4004/api/product/${productId}`);
+        alert('Product deleted!');
+        displayContent();
+        document.getElementById('deleteProductForm').reset(); // Reset the form
+        document.getElementById('deleteProductForm').classList.add('hidden'); // Hide the form
+    } catch (error) {
+        console.error('Error deleting product:', error.response.data);
+    }
+});
+
 let events = []; // will store the items to be filtered.
 let cartProducts = []; // will store items in the cart
 

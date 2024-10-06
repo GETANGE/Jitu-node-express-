@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css">
-    <title>Server side API fetching with pure node</title>
+    <title>Server-side API fetching with pure node</title>
 </head>
 <body>
     <div class="main-container">
@@ -15,17 +15,83 @@
             <option value="low">Below 50</option>
             <option value="high">Above 50</option>
         </select>
+
+        <!-- Buttons to perform CRUD actions -->
+        <button class="delete-btn" id="showDeleteFormBtn">Delete Item</button>
+        <button class="update-btn" id="showUpdateFormBtn">Update Item</button>
+        <button class="clear-btn" id="showAddFormBtn">Add Item</button>
+
+        <!-- Form to add new product -->
+        <form id="addProductForm" class="hidden">
+            <h3>Add New Product</h3>
+            <label for="productImageUrl">Image URL:</label>
+            <input type="text" id="productImageUrl" name="imageUrl" required>
         
-    
+            <label for="productTitle">Title:</label>
+            <input type="text" id="productTitle" name="title" required>
+        
+            <label for="productPrice">Price:</label>
+            <input type="number" id="productPrice" name="price" required>
+        
+            <label for="productDate">Date:</label>
+            <input type="text" id="productDate" name="date" required>
+        
+            <label for="productLocation">Location:</label>
+            <input type="text" id="productLocation" name="location" required>
+        
+            <label for="productCompany">Company:</label>
+            <input type="text" id="productCompany" name="company" required>
+        
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Form to update existing product -->
+        <form id="updateProductForm" class="hidden">
+            <h3>Update Product</h3>
+            <label for="productIdToUpdate">Product ID:</label>
+            <input type="text" id="productIdToUpdate" name="productId" required>
+
+            <label for="updateProductImageUrl">Image URL:</label>
+            <input type="text" id="updateProductImageUrl" name="imageUrl">
+        
+            <label for="updateProductTitle">Title:</label>
+            <input type="text" id="updateProductTitle" name="title">
+        
+            <label for="updateProductPrice">Price:</label>
+            <input type="number" id="updateProductPrice" name="price">
+        
+            <label for="updateProductDate">Date:</label>
+            <input type="text" id="updateProductDate" name="date">
+        
+            <label for="updateProductLocation">Location:</label>
+            <input type="text" id="updateProductLocation" name="location">
+        
+            <label for="updateProductCompany">Company:</label>
+            <input type="text" id="updateProductCompany" name="company">
+        
+            <button type="submit">Update</button>
+        </form>
+
+        <!-- Form to delete a product -->
+        <form id="deleteProductForm" class="hidden">
+            <h3>Delete Product</h3>
+            <label for="productIdToDelete">Product ID:</label>
+            <input type="text" id="productIdToDelete" name="productId" required>
+            <button type="submit">Delete</button>
+        </form>
+
+        <!-- Product section -->
         <div class="container" id="container"></div>
-        
+
         <!-- Cart section -->
         <h2 style="margin-top: 40px;">Cart Items</h2>
         <div class="container" id="cartContainer">
             <!-- Clicked items will be displayed here -->
         </div>
     </div>
-    
+
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>

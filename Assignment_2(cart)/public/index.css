@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none;
+}
+
+#addProductForm {
+    margin-top: 20px;
+}
+
 body {
     min-height: 100vh;
     display: flex;
