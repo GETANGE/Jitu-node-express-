@@ -54,7 +54,7 @@ fs.readFile(txtFilePath, 'utf8', (err, data) => {
         if (req.method === 'OPTIONS') {
             res.writeHead(204, headers);
             res.end();
-            return; // Ensure no further code runs after this.
+            return;
         }
 
         // Serve static files or handle API routes

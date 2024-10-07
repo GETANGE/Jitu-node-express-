@@ -4,6 +4,15 @@
     box-sizing: border-box;
 }
 
+.update-btn, .delete-btn, .clear-btn {
+    background-color: #2fc215;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 .hidden {
     display: none;
 }
