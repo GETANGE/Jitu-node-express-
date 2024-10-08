@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cs2iota2go8te7ad4hog",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Products",
+          "column": {
+            "pk": false,
+            "name": "date",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cs2iota2go8te7ad4hog",
+  "parent": "mig_cs2iooq2go8te7ad4hng",
+  "schema": "public",
+  "startedAt": "2024-10-08T12:58:30.019103Z"
+}

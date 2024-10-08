@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cs2ip7bujno0fvdn31h0",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Products",
+          "column": {
+            "pk": false,
+            "name": "location",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cs2ip7bujno0fvdn31h0",
+  "parent": "mig_cs2iota2go8te7ad4hog",
+  "schema": "public",
+  "startedAt": "2024-10-08T12:59:10.138126Z"
+}
