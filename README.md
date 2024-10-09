@@ -12,7 +12,7 @@ This is a Node.js API built with Express.js that allows users to perform CRUD op
 
 ## **Tech Stack**
 
-- **Backend**: Node.js, Express.js
+- **Backend**: Node.js, Express.js & Typescript
 - **Database**: Xata (A serverless database)
 - **Environment Management**: dotenv
 - **Middleware**: CORS, Express body-parser for handling JSON and URL-encoded payloads.
