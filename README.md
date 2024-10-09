@@ -21,7 +21,7 @@ This is a Node.js API built with Express.js that allows users to perform CRUD op
 
 ### **Requirements**
 
-- Node.js (v14.x or later)
+- Node.js (v18.x or later)
 - Xata Account and API Key
 - Environment variables set up for `.env`
 
