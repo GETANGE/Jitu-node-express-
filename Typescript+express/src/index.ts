@@ -35,6 +35,25 @@ app.get("/api/v1/products", async (req: Request, res: Response) => {
   }
 });
 
+//GET single product
+app.get("/api/v1/products/:id", async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.id;
+    
+    const product = await xata.db.Products.read(productId);
+
+    res.json({
+      message: "Products fetched successfully",
+      data: product,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      message: "Error fetching products",
+    });
+  }
+});
+
 // POST Request
 app.post("/api/v1/products", async (req: Request, res: Response) => {
   try {
@@ -109,40 +128,25 @@ app.delete("/api/v1/products/:id", async (req: Request, res: Response) => {
 });
 
 // Search across tables
-app.post("/api/v1/search", async (req: Request, res: Response) => {
-  
+app.get("/api/v1/search/:phrase", async (req: Request, res: Response) => {
   try {
-    const data = req.body.data; 
+    const { phrase } = req.params;
 
-    if(!data){
+    if (!phrase) {
       res.status(400).json({
-        message: "No data provided",
+        message: "No search phrase provided",
       });
     }
 
-    const results = await xata.search.all(data,{
-      tables:[
+    // Performing the search with the phrase
+    const results = await xata.search.all(phrase, {
+      tables: [
         {
           table: "Products",
-          target: ["title","location" ,"price"],
-          filter: {"date": "Sollicito illo a perspiciatis defleo capillus umerus. Depulso carus considero occaecati chirographum tumultus. Victus ultio cetera sto.\nAlter cauda voluptatibus defungo voro deorsum capio curso. Talis demens tero carus cotidie dolor tantum decipio. Unus armarium quidem cruentus theatrum tenetur dolorem clamo."},
-          boosters: [{
-            numericBooster:{
-              column: "price",
-              factor: 3
-            }
-          }]
+          target: ["title", "location", "price"]
         }
-      ],
-      fuzziness:1,
-      prefix: "phrase"
+      ]
     });
-
-    if(!results){
-      res.status(404).json({
-        message: "No results found",
-      });
-    }
 
     res.json({
       message: "Search results",
