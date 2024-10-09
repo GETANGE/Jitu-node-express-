@@ -30,3 +30,7 @@ This is a Node.js API built with Express.js that allows users to perform CRUD op
 1. Clone the repository:
    ```bash
    git clone https://github.com/GETANGE/Jitu-node-express-.git
+
+## **Sample Database with Table**
+
+![Screenshot from 2024-10-09 09-30-06](https://github.com/user-attachments/assets/f85b346b-3619-439c-ad6f-27ce52016b1a)
