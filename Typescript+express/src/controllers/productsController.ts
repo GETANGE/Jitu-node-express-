@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { matchedData, validationResult } from "express-validator"
 import { getXataClient } from "../xata";
 import AppError from "../utils/AppError";
 
@@ -14,7 +13,6 @@ export const createProduct = async (req: Request, res: Response, next:NextFuncti
                 data: newProduct,
             });
 
-            next();
         } catch (err) {
             return next(new AppError("Error creating product", 500));
         }
@@ -28,40 +26,30 @@ export const getAllProducts = async (req: Request, res: Response, next:NextFunct
             message: "Products fetched successfully",
             data: products
         });
-            next();
+        
         } catch (err) {
             return next(new AppError("Error fetching products", 500))
     }
 }
 
 export const getSingleProduct =async (req: Request, res: Response, next:NextFunction) => {
-        try {
-            const result = validationResult(req);
+    try {
+            const productId = req.params.id;
+
+            const product = await xata.db.Products.read(productId);
         
-            if (!result.isEmpty()) {
-                res.status(400).json({ 
-                    errors: result.array() 
-                });
-            }else{
-                const data = matchedData(req);
-                const productId = data.id;
-        
-                const product = await xata.db.Products.read(productId);
-        
-                if(!product){
-                    return next(new AppError("Product not found", 404));
-                }
-            
-                res.json({
-                    message: "Products fetched successfully",
-                    data: product,
-                }); 
-            
-                next();
+            if(!product){
+                return next(new AppError("Product not found", 404));
             }
-        } catch (err) {
-            return next(new AppError("Error fetching product", 500));
-        }
+            
+            res.json({
+                message: "Products fetched successfully",
+                data: product,
+            }); 
+            
+    } catch (err) {
+        return next(new AppError("Error fetching product", 500));
+    }
 }
 
 export const updateProduct = async (req: Request, res: Response, next:NextFunction) => {
