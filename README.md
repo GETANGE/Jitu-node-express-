@@ -65,4 +65,4 @@ Ensure the following environment variables are added to your `.env` file:
 XATA_API_KEY=<your-xata-api-key>
 XATA_WORKSPACE=<your-xata-workspace>
 XATA_REGION=<your-xata-region>
-PORT=3000
+PORT=7000
