@@ -14,13 +14,14 @@ export const createProduct = async (req: Request, res: Response, next:NextFuncti
             });
 
         } catch (err) {
+            console.log(err)
             return next(new AppError("Error creating product", 500));
         }
 }
 
 export const getAllProducts = async (req: Request, res: Response, next:NextFunction) => {
     try {
-        const products = await xata.db.Products.getAll();
+        const products = await xata.db.Products.sort('price', 'desc').getAll();
     
         res.status(200).json({
             message: "Products fetched successfully",
@@ -83,7 +84,7 @@ export const deleteProduct = async (req: Request, res: Response, next:NextFuncti
 
 export const searchProduct = async (req: Request, res: Response, next:NextFunction) => {
     try {
-        const { phrase } = req.params;
+        const { phrase } = req.body;
         
         if (!phrase) {
             return next(new AppError("provide a valid phrase", 404));
@@ -107,3 +108,36 @@ export const searchProduct = async (req: Request, res: Response, next:NextFuncti
         return next(new AppError("Error searching product", 500))
     }
 }
+
+/**
+ * PERFORMING XATA AGGREGATIONS
+ */
+
+export const getProductsByPrice = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const minPrice = req.query.minPrice ? parseFloat(req.query.minPrice as string) : 50;
+
+        const records = await xata.db.Products.aggregate({
+            topProducts: {
+                topValues: {
+                    column: 'price',
+                    size: 5
+                },
+                filter: {
+                    price: {
+                        $gte: minPrice
+                    }
+                }
+            }
+        });
+
+        // Send the response
+        res.status(200).json({
+            message: "Products fetched successfully",
+            data: records,
+        });
+    } catch (error) {
+        console.error(error);
+        return next(new AppError("Error getting products by price", 500));
+    }
+};

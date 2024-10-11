@@ -1,0 +1,27 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cs3onjbujno0fvdn3fvg",
+    "operations": [
+      {
+        "add_column": {
+          "up": "''",
+          "table": "Users",
+          "column": {
+            "pk": false,
+            "name": "email",
+            "type": "text",
+            "unique": false,
+            "comment": "",
+            "nullable": false
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cs3onjbujno0fvdn3fvg",
+  "parent": "mig_cs3onei2go8te7ad4sd0",
+  "schema": "public",
+  "startedAt": "2024-10-10T08:09:49.37Z"
+}
